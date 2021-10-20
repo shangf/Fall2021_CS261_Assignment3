@@ -180,7 +180,6 @@ class DynamicArray:
 
         # if number of elements is strictly less than .25 of the current capacity
         # capacity must be reduced to 2 * number of elements
-        saved_capacity = self.capacity
 
         if self.capacity < 10:
             pass
