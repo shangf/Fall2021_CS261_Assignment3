@@ -147,26 +147,12 @@ class DynamicArray:
         if index < 0 or index > self.size:
             raise DynamicArrayException
 
-        # handles cases when inserting into an empty array
-        if self.size == index and self.size < self.data.length():
-            self.data[index] = value
-            self.size += 1
-            return
-
-        # handles cases when inserting at the last index in the array
-        if self.size == index and self.size >= self.data.length():
+        # resizes if not enough space
+        if self.size > self.data.length() - 1:
             self.resize(self.data.length() * 2)
-            self.data[index] = value
-            self.size += 1
-            return
 
-        # move the last element in the static array to the back
         for i in range(self.size, index, -1):
-            if self.size <= self.data.length() - 1:
-                self.data[i] = self.data[i - 1]
-            else:
-                self.resize(self.data.length() * 2)
-                self.data[i] = self.data[i - 1]
+            self.data[i] = self.data[i - 1]
         self.data[index] = value
         self.size += 1
 
